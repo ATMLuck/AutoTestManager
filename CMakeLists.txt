@@ -12,7 +12,7 @@ if(WIN32)
         src/Main.cpp
         src/Option.cpp
         src/ConsoleLog.cpp
-        res/icon.o
+        res/icon_win32.o
     )
 elseif(LINUX)
     add_executable(AutoTestManager

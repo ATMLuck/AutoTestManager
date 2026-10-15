@@ -41,16 +41,8 @@ Opt::Opt(const int argc, const char* argv[])
             if(option == "-i"||option == "--input")
             {
                 if(_isInputDir == -1) _isInputDir = 0;
-                else 
-                {
-                    Log("Input example file redefinition",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
-                if(argv[i+1][0]=='-') 
-                {
-                    Log("Unknown argument after '-i/--input'",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
+                else ErrorExit("Input example file redefinition");
+                if(argv[i+1][0]=='-') ErrorExit("Unknown argument after '-i/--input'");
                 _InputFilePath = argv[i+1];
                 i++;
                 continue;
@@ -59,16 +51,8 @@ Opt::Opt(const int argc, const char* argv[])
             if(option == "-I"|| option == "--input-dir")
             {
                 if(_isInputDir == -1) _isInputDir = 1;
-                else 
-                {
-                    Log("Input example file redefinition",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
-                if(argv[i+1][0]=='-') 
-                {
-                    Log("Unknown argument after '-I/--input-dir'",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
+                else ErrorExit("Input example file redefinition");
+                if(argv[i+1][0]=='-') ErrorExit("Unknown argument after '-I/--input-dir'");
                 _InputFilesDir = argv[i+1];
                 i++;
                 continue;
@@ -77,16 +61,8 @@ Opt::Opt(const int argc, const char* argv[])
             if(option == "-o"|| option == "--output")
             {
                 if(_isOutputDir==-1) _isOutputDir = 0;
-                else
-                {
-                    Log("Output example file redefinition",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
-                if(argv[i+1][0]=='-') 
-                {
-                    Log("Unknown argument after '-o/--output'",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
+                else ErrorExit("Output example file redefinition");
+                if(argv[i+1][0]=='-') ErrorExit("Unknown argument after '-o/--output'");
                 _OutputFilePath = argv[i+1];
                 i++;
                 continue;
@@ -95,16 +71,8 @@ Opt::Opt(const int argc, const char* argv[])
             if(option == "-O"|| option == "--output-dir")
             {
                 if(_isOutputDir==-1) _isOutputDir = 1;
-                else
-                {
-                    Log("Output example file redefinition",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
-                if(argv[i+1][0]=='-') 
-                {
-                    Log("Unknown argument after '-O/--output-dir'",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
+                else ErrorExit("Output example file redefinition");
+                if(argv[i+1][0]=='-') ErrorExit("Unknown argument after '-O/--output-dir'");
                 _OutputFilePath = argv[i+1];
                 i++;
                 continue;
@@ -113,17 +81,8 @@ Opt::Opt(const int argc, const char* argv[])
             if(option == "-p" || option == "--program")
             {
                 if(_isUseCompiledProgram == -1) _isUseCompiledProgram = 1;
-                else
-                {
-                    Log("The source files defined for compilation", LOG_TYPE::ERROR);
-                    std::exit(-1);
-
-                }
-                if(argv[i+1][0]=='-') 
-                {
-                    Log("Unknown argument after '-p/--program'",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
+                else ErrorExit("The source files defined for compilation");
+                if(argv[i+1][0]=='-') ErrorExit("Unknown argument after '-p/--program'");
                 _CompiledProgram = argv[i+1];
                 i++;
                 continue;
@@ -132,17 +91,8 @@ Opt::Opt(const int argc, const char* argv[])
             if(option == "-c" || option == "--complied")
             {
                 if(_isUseCompiledProgram == -1) _isUseCompiledProgram = 0;
-                else
-                {
-                    Log("'-c/--complied' parameter error", LOG_TYPE::ERROR);
-                    std::exit(-1);
-
-                }
-                if(argv[i+1][0]=='-') 
-                {
-                    Log("Unknown argument after '-c/--complied'",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
+                else ErrorExit("'-c/--complied' parameter error");
+                if(argv[i+1][0]=='-') ErrorExit("Unknown argument after '-c/--complied'");
                 _SourceFilePath = argv[i+1];
                 i++;
                 continue;
@@ -150,11 +100,7 @@ Opt::Opt(const int argc, const char* argv[])
             //编译输出路径
             if(option == "-b" || option == "--build")
             {
-                if(argv[i+1][0]=='-') 
-                {
-                    Log("Unknown argument after '-b/--build'",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
+                if(argv[i+1][0]=='-') ErrorExit("Unknown argument after '-b/--build'");
                 _CompiledProgramOutputPath = argv[i+1];
                 i++;
                 continue;
@@ -162,11 +108,7 @@ Opt::Opt(const int argc, const char* argv[])
             //时间限制
             if(option == "-t" || option == "--time")
             {
-                if(argv[i+1][0]=='-') 
-                {
-                    Log("Unknown argument after '-t/--time'",LOG_TYPE::ERROR);
-                    std::exit(-1);
-                }
+                if(argv[i+1][0]=='-') ErrorExit("Unknown argument after '-t/--time'");
                 std::string time_str = argv[i+1];
                 _TimeLimit = StringToULL(time_str);
                 _TimeLimit = true;
