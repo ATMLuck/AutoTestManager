@@ -11,12 +11,15 @@ if(WIN32)
     add_executable(AutoTestManager
         src/Main.cpp
         src/Option.cpp
+        src/ConsoleLog.cpp
         res/icon.o
     )
 elseif(LINUX)
     add_executable(AutoTestManager
         src/Main.cpp
         src/Option.cpp
+        src/ConsoleLog.cpp
+        res/icon_linux.o
     )
 endif()
 

@@ -1,27 +1,24 @@
 #pragma once
 #include <filesystem>
-#include <string>
 
 class Opt
 {
-private:
-    std::filesystem::path _SelfPath;
-    bool _isInputDir;
-    std::filesystem::path _InputFilePath;
-    std::filesystem::path _InputFilesDir;
-    bool _isOutputDir;
-    std::filesystem::path _OutputFilePath;
-    std::filesystem::path _OutputFilesDir;
-    bool _isUseCompiledProgram;
+public:
+    std::filesystem::path _WorkDirPath;
+    int _isInputDir = -1;
+    std::filesystem::path _InputFilePath = "./in.txt";
+    std::filesystem::path _InputFilesDir = "./in/";
+    int _isOutputDir = -1;
+    std::filesystem::path _OutputFilePath = "./out.txt";
+    std::filesystem::path _OutputFilesDir = "./out/";
+    int _isUseCompiledProgram = -1;
     std::filesystem::path _CompiledProgram;
     std::filesystem::path _SourceFilePath;
-    std::filesystem::path _CompiledProgramOutputPath;
-    bool _isEnableTimeLimit;
-    unsigned long long _TimeLimit;
-    bool _isEnableSpaceLimit;
+    std::filesystem::path _CompiledProgramOutputPath = "./build/";
+    bool _isEnableTimeLimit = false;
+    unsigned long long _TimeLimit = 1000;
+    bool _isEnableSpaceLimit = false;
     unsigned long long _SpaceLimit;
-public:
-    void SetSelfPath(std::string SelfPath);
-    void SetInputMode(bool _isInputDir);
-    Opt(const char* argv[]);
+
+    Opt(const int argc, const char* argv[]);
 };
